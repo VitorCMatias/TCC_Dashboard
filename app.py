@@ -2,7 +2,6 @@ import streamlit as st
 from streamlit_folium import st_folium
 from coord import get_coordinates
 import time
-import pandas as pd
 from Map import GPS
 
 
@@ -11,8 +10,6 @@ car_map = GPS()
 
 if 'dados' not in st.session_state:
     st.session_state['dados'] = []
-if 'dados' not in st.session_state:
-    st.session_state['dados2'] = []
 
 st.session_state['dados'].append(df_front.iloc[-1].tolist())
 
@@ -21,6 +18,7 @@ st_data = st_folium(car_map.get_map(),
     height=400*1.2,
     width=700*1.2,
 )
+
 auto_refresh = True
 number  = 2
 if auto_refresh:
