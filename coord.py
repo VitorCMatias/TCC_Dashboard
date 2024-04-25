@@ -11,11 +11,13 @@ def get_coordinates(num_passos = 50):
 
     # Gerar passos aleatórios para latitude e longitude
     passos_latitude = np.random.uniform(-tamanho_passo, tamanho_passo, num_passos)
-    passos_longitude = np.random.uniform(-tamanho_passo, tamanho_passo, num_passos)
+    passos_longitude = np.random.uniform(-tamanho_passo, tamanho_passo, num_passos*1000)
+    passos_velocidades = np.random.uniform(0, 80, num_passos)
 
     # Inicializar listas vazias para armazenar as coordenadas
     lista_latitude = [latitude_inicial]
     lista_longitude = [longitude_inicial]
+    velocidades = 0
 
     # Gerar as coordenadas
     for i in range(num_passos):
@@ -23,6 +25,7 @@ def get_coordinates(num_passos = 50):
         nova_longitude = lista_longitude[-1] + passos_longitude[i]
         lista_latitude.append(nova_latitude)
         lista_longitude.append(nova_longitude)
+        velocidades = (abs(passos_velocidades))
 
 
     lista_latitude.pop(0)
@@ -33,8 +36,11 @@ def get_coordinates(num_passos = 50):
     # Criar um DataFrame com as coordenadas
     df_coordenadas = pd.DataFrame({
         'latitude': lista_latitude,
-        'longitude': lista_longitude
+        'longitude': lista_longitude,
+        'velocidade': velocidades
     })
+
+    # print(df_coordenadas)
 
     return df_coordenadas
 
