@@ -18,7 +18,7 @@ class GPS:
                 folium.CircleMarker
                 (
                     location=(lat, lon),
-                    radius=3,
+                    radius=5,
                     color='#808080',
                     fill = True,
                     fill_opacity=1,
@@ -50,9 +50,10 @@ class GPS:
                 (
                     location=(data[i][0],data[i][1]),
                     radius=3,
+                    opacity=0.7,
                     color=self.velocity_to_color(data[i][2]),
                     fill = True,
-                    fill_opacity=1,
+                    fill_opacity=0.7,
                 )
             )
         return fig
