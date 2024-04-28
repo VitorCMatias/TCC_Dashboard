@@ -11,23 +11,23 @@ class GPS:
     def get_map(self):
         return self.map
 
-    def update(self, df_front):
-        position = zip(df_front.latitude, df_front.longitude)
-        for lat, lon in position:
-            self.figure.add_child(
-                folium.CircleMarker
-                (
-                    location=(lat, lon),
-                    radius=5,
-                    color='#808080',
-                    fill=True,
-                    fill_opacity=1,
-                    fill_color='#ffc72c'
-                )
+    def position_update(self, position):
+        self.figure.add_child(
+            folium.CircleMarker
+            (
+                location=position,
+                radius=5,
+                color='#808080',
+                fill=True,
+                fill_opacity=1,
+                fill_color='#ffc72c'
             )
-            self.loc = (lat, lon)
+        )
+        self.loc = position
 
         return self.figure
+
+
 
     def get_locations(self):
         return self.loc
