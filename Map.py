@@ -3,6 +3,9 @@ import matplotlib.pyplot as plt
 
 
 class GPS:
+    '''
+    Módulo responsável por construir os objetos de Mapa na dashboard principal, e a gerenciar os dados presentes nele.
+    '''
     def __init__(self):
         self.position = (51.420833, -0.070000)
         self.map = folium.Map(location=self.position, zoom_start=15)
@@ -13,6 +16,12 @@ class GPS:
         return self.map
 
     def position_update(self, coordinate: tuple) -> folium.map.FeatureGroup:
+        '''
+        Função para atualizar a posição do mapa
+
+        @param coordinate: Tupla com os valores das coordenadas do carro.
+        @return: Canva com a posição do carro.
+        '''
         car_current_position = folium.FeatureGroup(name='Current Position')
         car_current_position.add_child(
             folium.CircleMarker
@@ -33,9 +42,13 @@ class GPS:
         return self.position
 
     def __velocity_to_color(self, value: float, upper_bound: float = 80) -> str:
-        """
-        :type upper_bound: the maximum value of the range that will be normalized to 255
-        """
+        '''
+        Mapeia um valor informado em uma escala de cor hexadecimal
+
+        @param value: O valor que será mapeado em código de cor.
+        @param upper_bound: O valor máximo do intervalo que será normalizado para uma escala de 255.
+        @return: Retorna o código de cores do valor inserido no parâmetro.
+        '''
         normalized_value = value / upper_bound
         colormap = plt.get_cmap("coolwarm")
         rgb_color = colormap(normalized_value)
@@ -44,6 +57,14 @@ class GPS:
         return hex_color
 
     def heat_map(self, car_data: list) -> folium.map.FeatureGroup:
+        '''
+        Cria um mapa de calor utilizando as posições do veículo.
+
+        @param car_data: informações a respeito do carro, uma tupla (latitude, longitude) e a velocidade.
+        @return: canva com as posições antigas do carro, pintadas de acordo com a velocidade, quanto mais quente a cor
+         mais rápido o carro estava.
+        '''
+
         heatmap = folium.FeatureGroup(name="Position")
 
         for coordinate, velocity in car_data:
