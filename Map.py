@@ -4,15 +4,17 @@ import matplotlib.pyplot as plt
 
 class GPS:
     def __init__(self):
-        self.map = folium.Map(location=[51.420833, -0.070000], zoom_start=15)
-        self.figure = folium.FeatureGroup(name="Car Position")
-        self.loc = ()
+        self.position = (51.420833, -0.070000)
+        self.map = folium.Map(location=self.position, zoom_start=15)
 
-    def get_map(self):
+        self.figure = folium.FeatureGroup(name="Car Position")
+
+    def get_map(self) -> folium.Map:
         return self.map
 
-    def position_update(self, coordinate: tuple):
-        self.figure.add_child(
+    def position_update(self, coordinate: tuple) -> folium.map.FeatureGroup:
+        car_current_position = folium.FeatureGroup(name='Current Position')
+        car_current_position.add_child(
             folium.CircleMarker
             (
                 location=coordinate,
@@ -23,26 +25,29 @@ class GPS:
                 fill_color='#ffc72c'
             )
         )
-        self.loc = coordinate
+        self.position = coordinate
 
-        return self.figure
+        return car_current_position
 
-    def get_locations(self):
-        return self.loc
+    def get_position(self) -> tuple:
+        return self.position
 
-    def __velocity_to_color(self, value, max_velocity=80):
-        normalized_value = value / max_velocity
+    def __velocity_to_color(self, value: float, upper_bound: float = 80) -> str:
+        """
+        :type upper_bound: the maximum value of the range that will be normalized to 255
+        """
+        normalized_value = value / upper_bound
         colormap = plt.get_cmap("coolwarm")
         rgb_color = colormap(normalized_value)
         hex_color = '#%02x%02x%02x' % (int(rgb_color[0] * 255), int(rgb_color[1] * 255), int(rgb_color[2] * 255))
 
         return hex_color
 
-    def heat_map(self, car_data):
-        fig = folium.FeatureGroup(name="Position")
+    def heat_map(self, car_data: list) -> folium.map.FeatureGroup:
+        heatmap = folium.FeatureGroup(name="Position")
 
         for coordinate, velocity in car_data:
-            fig.add_child(
+            heatmap.add_child(
                 folium.CircleMarker
                 (
                     location=coordinate,
@@ -53,4 +58,5 @@ class GPS:
                     fill_opacity=0.7,
                 )
             )
-        return fig
+
+        return heatmap
