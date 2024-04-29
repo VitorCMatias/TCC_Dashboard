@@ -6,8 +6,6 @@ from Map import GPS
 
 '''
 TODO
-    - Aumentar a modularização do Map.py deixar o updade recebendo as coeedenadas x e y ou uma tupla
-    - Deixar o mapa de calor recebendo uma lista de tuplas ou das coordenadas e das velocidades
     - Tentar usar filas ou pilha ao invés de lista, colocar os dados que chegam em uma fila o primeiro item é a
      localização atual e os demais vão para o heatmap.
 '''
