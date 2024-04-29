@@ -4,7 +4,6 @@ from coord import get_coordinates
 import time
 from Map import GPS
 
-
 '''
 TODO
     - Aumentar a modularização do Map.py deixar o updade recebendo as coeedenadas x e y ou uma tupla
@@ -12,11 +11,10 @@ TODO
     - Tentar usar filas ou pilha ao invés de lista, colocar os dados que chegam em uma fila o primeiro item é a
      localização atual e os demais vão para o heatmap.
 '''
+
+
 def get_position(df_front):
-    position = (df_front.latitude, df_front.longitude)
-    return position
-
-
+    return (df_front.latitude, df_front.longitude)
 
 
 df_front = get_coordinates(1)
@@ -40,4 +38,3 @@ refresh_frequency = 2
 if auto_refresh:
     time.sleep(refresh_frequency)
     st.rerun()
-

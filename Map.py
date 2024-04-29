@@ -11,11 +11,11 @@ class GPS:
     def get_map(self):
         return self.map
 
-    def position_update(self, position):
+    def position_update(self, coordinate: tuple):
         self.figure.add_child(
             folium.CircleMarker
             (
-                location=position,
+                location=coordinate,
                 radius=5,
                 color='#808080',
                 fill=True,
@@ -23,11 +23,9 @@ class GPS:
                 fill_color='#ffc72c'
             )
         )
-        self.loc = position
+        self.loc = coordinate
 
         return self.figure
-
-
 
     def get_locations(self):
         return self.loc
@@ -41,13 +39,12 @@ class GPS:
         return hex_color
 
     def heat_map(self, data):
-
         fig = folium.FeatureGroup(name="Position")
 
         for i in range(len(data)):
             fig.add_child(
                 folium.CircleMarker
-                (
+                    (
                     location=(data[i][0], data[i][1]),
                     radius=3,
                     opacity=0.7,
