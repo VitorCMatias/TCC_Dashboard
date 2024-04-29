@@ -163,3 +163,7 @@ cython_debug/
 *.csv
 .vscode
 .idea
+
+*.db
+run.ps1
+.streamlit/
