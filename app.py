@@ -13,22 +13,28 @@ TODO
 '''
 
 
-def get_position(df_front):
-    return (df_front.latitude, df_front.longitude)
+def get_position(df):
+    return df.latitude, df.longitude
 
 
 df_front = get_coordinates(1)
 car_map = GPS()
 
-if 'car_coordinates' not in st.session_state:
-    st.session_state['car_coordinates'] = []
+if 'car_data' not in st.session_state:
+    st.session_state['car_data'] = []
 
-st.session_state['car_coordinates'].append(df_front.iloc[-1].tolist())
+
 position = get_position(df_front)
+
+st.session_state['car_data'].append([get_position(df_front),df_front['velocidade'].iloc[-1].tolist()])
+
+
+car_data = st.session_state['car_data']
+
 
 st_data = st_folium(
     car_map.get_map(),
-    feature_group_to_add=[car_map.heat_map(st.session_state['car_coordinates']), car_map.position_update(position)],
+    feature_group_to_add=[car_map.heat_map(car_data), car_map.position_update(position)],
     height=400,
     width=700,
 )

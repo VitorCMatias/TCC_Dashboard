@@ -38,17 +38,17 @@ class GPS:
 
         return hex_color
 
-    def heat_map(self, data):
+    def heat_map(self, car_data):
         fig = folium.FeatureGroup(name="Position")
 
-        for i in range(len(data)):
+        for coordinate, velocity in car_data:
             fig.add_child(
                 folium.CircleMarker
-                    (
-                    location=(data[i][0], data[i][1]),
+                (
+                    location=coordinate,
                     radius=3,
                     opacity=0.7,
-                    color=self.__velocity_to_color(data[i][2]),
+                    color=self.__velocity_to_color(velocity),
                     fill=True,
                     fill_opacity=0.7,
                 )
