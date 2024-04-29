@@ -22,7 +22,7 @@ class GPS:
         @param coordinate: Tupla com os valores das coordenadas do carro.
         @return: Canva com a posição do carro.
         '''
-        
+
         car_current_position = folium.FeatureGroup(name='Current Position')
         car_current_position.add_child(
             folium.CircleMarker
@@ -57,7 +57,7 @@ class GPS:
 
         return hex_color
 
-    def heat_map(self, car_data) -> folium.map.FeatureGroup:
+    def heat_map(self, car_data, latitude:str='latitude', longitude:str='longitude', speed:str='speed') -> folium.map.FeatureGroup:
         '''
         Cria um mapa de calor utilizando as posições do veículo.
 
@@ -69,7 +69,7 @@ class GPS:
         heatmap = folium.FeatureGroup(name="Position")
 
 
-        for lat, lon,velocity in zip(car_data.latitude.values, car_data.longitude.values,car_data.speed.values):
+        for lat, lon,velocity in zip(car_data[latitude].values, car_data[longitude].values,car_data[speed].values):
             heatmap.add_child(
                 folium.CircleMarker
                 (
