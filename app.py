@@ -1,11 +1,9 @@
 import streamlit as st
 from streamlit_folium import st_folium
-from coord import get_coordinates
 import time
 from Map import GPS
 import mock_data
 import plotly.express as px
-import numpy as np
 from DB import mock_table
 
 '''
