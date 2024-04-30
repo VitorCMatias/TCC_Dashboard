@@ -1,45 +1,47 @@
+import numpy as np
 import streamlit as st
 from streamlit_folium import st_folium
 import time
 from Map import GPS
-import mock_data
 import plotly.express as px
-from DB import mock_table
+import pandas as pd
+from Mock import Mock
 
-'''
-TODO
-    - Tentar usar filas ou pilha ao invés de lista, colocar os dados que chegam em uma fila o primeiro item é a
-     localização atual e os demais vão para o heatmap.
-'''
+
+def calculate_acceleration(df: pd.DataFrame) -> pd.Series:
+    """
+    Calculates acceleration from a DataFrame containing speed values.
+
+    Args:
+        df (pd.DataFrame): A DataFrame with columns 'timestamp', 'speed' (in km/h).
+
+    Returns:
+        pd.Series: A Series containing acceleration values (in km/h^2).
+    """
+    
+    df['timestamp'] = pd.to_datetime(df['timestamp'])
+    df['time_interval_s'] = (df['timestamp'] - df['timestamp'].shift(1)).dt.total_seconds()
+    df['acceleration'] = (df['speed'] - df['speed'].shift(1)) / df['time_interval_s']
+
+    return df
+
 
 
 def get_position(df):
     position = df[['latitude', 'longitude']].apply(tuple, axis=1)
     return position.iloc[0]
 
-def get_velocity(df):
-    return df.speed.item()
 
-
-def get_date(df):
-    return df.gps_datetime
-
-
-df_front = mock_data.get()
 
 st.cache_data.clear()
-db_connection = st.connection('mock_data', type='sql',ttl=10)
 
+mock = Mock()
+mock.add()
 
-with db_connection.session as db_session:
-    new_data = mock_table(timestamp=df_front.gps_datetime, latitude=df_front.latitude, longitude=df_front.longitude, speed=df_front.speed)
-    db_session.add(new_data)
-    db_session.commit()
+positions = mock.get_previous_positions()
+query_car_current_position = mock.get_current_position()
 
 car_map = GPS((-6.22444, 106.867111))
-
-positions = db_connection.query('SELECT latitude, longitude, speed FROM mock_table')
-query_car_current_position = db_connection.query('SELECT latitude, longitude FROM mock_table WHERE id = (SELECT MAX(id) FROM mock_table)')
 car_current_position = get_position(query_car_current_position)
 
 
@@ -50,12 +52,20 @@ st_data = st_folium(
     width=700,
 )
 
+speed_sample = mock.get_sample_speed()
 
-q = db_connection.query('select timestamp, speed from mock_table')
-fig = px.bar(q, x='timestamp', y='speed')
+mean_velocity = np.mean(speed_sample['speed'])
+fig = px.bar(speed_sample, x='timestamp', y='speed', title='Speed')
+fig.add_hline(y=mean_velocity, line_dash='dot', annotation_text=f'{mean_velocity:.2f}km/h', annotation_position='top right')
+
 
 st.plotly_chart(fig, use_container_width=True)
 
+fig_acel = px.bar(calculate_acceleration(speed_sample), x='timestamp', y='acceleration', title='acceleration')
+
+st.plotly_chart(fig_acel, use_container_width=True)
+
+st.dataframe( mock.get_all())
 
 auto_refresh = True
 refresh_frequency = 2

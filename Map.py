@@ -8,7 +8,7 @@ class GPS:
     '''
     def __init__(self, initial_position: tuple, zoom: int = 15):
         self.position = initial_position
-        self.map = folium.Map(location=self.position, zoom_start=zoom)
+        self.map = folium.Map(location=self.position, zoom_start=zoom, tiles="Cartodb Positron")
 
         self.figure = folium.FeatureGroup(name="Car Position")
 
