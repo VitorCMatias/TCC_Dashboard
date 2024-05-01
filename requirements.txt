@@ -3,3 +3,5 @@ folium~=0.16.0
 matplotlib~=3.7.5
 pandas~=2.0.3
 numpy~=1.24.4
+plotly~=5.21.0
+SQLAlchemy~=2.0.29
