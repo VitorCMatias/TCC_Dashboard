@@ -69,7 +69,7 @@ st.plotly_chart(
 
 
 
-st.dataframe(mock.get_all())
+st.dataframe(df_acelletation)
 
 auto_refresh = True
 refresh_frequency = 2
