@@ -31,8 +31,22 @@ def get_position(df):
     position = df[['latitude', 'longitude']].apply(tuple, axis=1)
     return position.iloc[0]
 
-
 st.cache_data.clear()
+
+st.set_page_config(layout='wide',
+                   page_title='CAN-Monitor',
+                   page_icon=':zap:')
+
+hide_decoration_bar_style = '''
+    <style>
+        header {visibility: hidden;}
+    </style>
+'''
+st.markdown(hide_decoration_bar_style, unsafe_allow_html=True)
+
+st.title('CAN-Monitor Dashboard')
+st.write('---')
+
 
 mock = Mock()
 mock.add()
@@ -40,9 +54,9 @@ mock.add()
 positions = mock.get_previous_positions()
 query_car_current_position = mock.get_current_position()
 speed_sample = mock.get_sample_speed()
-
 car_current_position = get_position(query_car_current_position)
 
+df_acelletation = calculate_acceleration(speed_sample)
 
 car_map = GPS((-6.22444, 106.867111),zoom=10)
 
@@ -53,19 +67,25 @@ st_data = st_folium(
     width=700*2,
 )
 
-df_acelletation = calculate_acceleration(speed_sample)
-
 st.plotly_chart(
-    bar_plot(df_acelletation, 'timestamp', 'speed', title='Velocidade em km/h', unit_of_measurement='km/h'),
+    line_plot(df_acelletation, 'timestamp', 'speed', y2='acceleration', title='Acelração e velocidade'),
     use_container_width=True)
 
-st.plotly_chart(
+plot1, plot2 = st.columns(2)
+
+with plot1:
+    st.plotly_chart(
+        bar_plot(df_acelletation, 'timestamp', 'speed', title='Velocidade em km/h', unit_of_measurement='km/h'),
+        use_container_width=True)
+
+
+with plot2:
+    st.plotly_chart(
     bar_plot(df_acelletation, 'timestamp', 'acceleration', title='Aceleração em km/h²'),
     use_container_width=True)
 
-st.plotly_chart(
-    line_plot(df_acelletation, 'timestamp', 'speed', y2='acceleration'),
-    use_container_width=True)
+
+st.write(mock.car_flags().head(1))
 
 
 

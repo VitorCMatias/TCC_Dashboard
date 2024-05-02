@@ -1,7 +1,7 @@
 import pandas as pd
 import streamlit as st
 from DB import mock_table
-
+import numpy as np
 
 class Mock:
     db_connection = None
@@ -53,3 +53,18 @@ class Mock:
 
     def get_all(self):
         return self.db_connection.query('SELECT * FROM mock_table')
+
+
+    def car_flags(self):
+        colunas = ['apps', 'bppc', 'buzzer', 'breaklight', 'inv_break', 
+            'botao_partida', 'shutdown1', 'shutdown2', 'shutdown3', 
+            'inversor_direito', 'inversor_esquerdo']
+
+        # Gerando valores booleanos aleatórios para cada coluna
+        dados = np.random.choice([True, False], size=(10, len(colunas)))
+
+        # Criando o DataFrame
+        df = pd.DataFrame(dados, columns=colunas)
+
+        # Exibindo o DataFrame
+        return df
