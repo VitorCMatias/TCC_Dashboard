@@ -2,34 +2,16 @@ import streamlit as st
 from streamlit_folium import st_folium
 import time
 from Map import GPS
-import pandas as pd
+from utils import calculate_acceleration,get_position
 from Mock import Mock
 from Plot import bar_plot, line_plot
 
 
-def calculate_acceleration(df: pd.DataFrame, time_colum: str = 'timestamp', speed_solum: str = 'speed') -> pd.DataFrame:
-    """
-    Calcula a aceleração a partir de um DataFrame contendo valores de velocidade.
-
-    @param df: Um DataFrame com as colunas 'timestamp', 'speed'.
-    @param time_colum:  Coluna do dataframe contendo os valores de tempo.
-    @param speed_solum: Coluna do dataframe contendo os valores de velocidade.
-    @return: O dataframe original contendo as colunas de aceleração adicionadas a ele.
-    """
-
-    df[time_colum] = pd.to_datetime(df[time_colum])
-    df['time_interval_s'] = (df[time_colum] - df[time_colum].shift(1)).dt.total_seconds()
-    df['acceleration'] = (df[speed_solum] - df[speed_solum].shift(1)) / df['time_interval_s']
-
-    df.drop(columns=['time_interval_s'], inplace=True)
-    df.dropna(subset=['acceleration'], inplace=True)
-
-    return df
+# TODO
+# - Criar o painel lateral de configuração
 
 
-def get_position(df):
-    position = df[['latitude', 'longitude']].apply(tuple, axis=1)
-    return position.iloc[0]
+
 
 st.cache_data.clear()
 
@@ -85,11 +67,13 @@ with plot2:
     use_container_width=True)
 
 
-st.write(mock.car_flags().head(1))
+st.dataframe(mock.car_flags().head(1), use_container_width=True,hide_index=True)
+
+all_data = mock.get_all()
+all_data = calculate_acceleration(all_data)
 
 
-
-st.dataframe(df_acelletation)
+st.dataframe(all_data,use_container_width=True,hide_index=True)
 
 auto_refresh = True
 refresh_frequency = 2
