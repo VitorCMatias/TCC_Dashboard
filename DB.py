@@ -1,6 +1,5 @@
-from sqlalchemy import create_engine, delete, Column, Integer, String, DateTime, Float
-from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.orm import sessionmaker, DeclarativeBase
+from sqlalchemy import create_engine, Column, Integer, String, Float
+from sqlalchemy.orm import DeclarativeBase
 
 
 engine = create_engine('sqlite:///mock_data.db')
@@ -17,6 +16,4 @@ class mock_table(Base):
     longitude = Column(Float, unique=False, nullable=False)
     speed = Column(Float, unique=False, nullable=False)
 
-
-# stmt = delete(mock_table)
 Base.metadata.create_all(engine)

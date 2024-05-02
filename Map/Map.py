@@ -2,6 +2,7 @@ import folium
 import matplotlib.pyplot as plt
 
 
+
 class GPS:
     '''
     Módulo responsável por construir os objetos de Mapa na dashboard principal, e a gerenciar os dados presentes nele.
@@ -42,21 +43,6 @@ class GPS:
     def get_position(self) -> tuple:
         return self.position
 
-    def __velocity_to_color(self, value: float, upper_bound: float = 51.0) -> str:
-        '''
-        Mapeia um valor informado em uma escala de cor hexadecimal
-
-        @param value: O valor que será mapeado em código de cor.
-        @param upper_bound: O valor máximo do intervalo que será normalizado para uma escala de 255.
-        @return: Retorna o código de cores do valor inserido no parâmetro.
-        '''
-        normalized_value = value / upper_bound
-        colormap = plt.get_cmap("jet") # coolwarm
-        rgb_color = colormap(normalized_value)
-        hex_color = '#%02x%02x%02x' % (int(rgb_color[0] * 255), int(rgb_color[1] * 255), int(rgb_color[2] * 255))
-
-        return hex_color
-
     def heat_map(self, car_data, latitude:str='latitude', longitude:str='longitude', speed:str='speed') -> folium.map.FeatureGroup:
         '''
         Cria um mapa de calor utilizando as posições do veículo.
@@ -76,10 +62,25 @@ class GPS:
                     location=(lat,lon),
                     radius=3,
                     opacity=0.7,
-                    color=self.__velocity_to_color(velocity),
+                    color=velocity_to_color(velocity),
                     fill=True,
                     fill_opacity=0.7,
                 )
             )
 
         return heatmap
+
+def velocity_to_color(value: float, upper_bound: float = 51.0) -> str:
+    '''
+    Mapeia um valor informado em uma escala de cor hexadecimal
+
+    @param value: O valor que será mapeado em código de cor.
+    @param upper_bound: O valor máximo do intervalo que será normalizado para uma escala de 255.
+    @return: Retorna o código de cores do valor inserido no parâmetro.
+    '''
+    normalized_value = value / upper_bound
+    colormap = plt.get_cmap("jet") # coolwarm
+    rgb_color = colormap(normalized_value)
+    hex_color = '#%02x%02x%02x' % (int(rgb_color[0] * 255), int(rgb_color[1] * 255), int(rgb_color[2] * 255))
+
+    return hex_color

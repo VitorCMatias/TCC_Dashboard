@@ -4,7 +4,7 @@ import time
 from Map import GPS
 import pandas as pd
 from Mock import Mock
-from Plot.Plot import bar_plot, line_plot
+from Plot import bar_plot, line_plot
 
 
 def calculate_acceleration(df: pd.DataFrame, time_colum: str = 'timestamp', speed_solum: str = 'speed') -> pd.DataFrame:
