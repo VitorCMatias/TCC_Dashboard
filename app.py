@@ -24,7 +24,7 @@ hide_decoration_bar_style = '''
         header {visibility: hidden;}
     </style>
 '''
-st.markdown(hide_decoration_bar_style, unsafe_allow_html=True)
+st.html(hide_decoration_bar_style)
 
 st.title('CAN-Monitor Dashboard')
 st.write('---')
