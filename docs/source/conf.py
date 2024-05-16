@@ -29,8 +29,16 @@ extensions = ['myst_parser',
 templates_path = ['_templates']
 exclude_patterns = []
 
-autoapi_dirs = ['../..']
+autoapi_dirs = ['../../Map','../../Plot']
+
 autodoc_typehints = 'both'
+
+autodoc_default_flags = [
+    'private-members',
+    'show-inheritance',
+    'members',
+]
+
 language = 'pt_BR'
 
 # -- Options for HTML output -------------------------------------------------

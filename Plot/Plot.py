@@ -7,13 +7,13 @@ def __add_mean_horizontal_line(fig: Figure, values:list, horizontal_line_annotat
     """
     Adiciona uma linha horizontal ao gráfico Plotly Express representando a média dos valores fornecidos.
 
-    @param fig: A figura Plotly Express onde a linha horizontal será adicionada.
-    @param values: Uma lista ou array-like contendo os valores para os quais deseja-se calcular a média.
-    @param horizontal_line_annotation: Uma string que será adicionada como anotação à linha horizontal,
-      geralmente para fornecer contexto sobre o que a linha representa (por exemplo, 'Média', 'Limite', etc.).
-      O padrão é uma string vazia.
-    @param unit_of_measurement: Uma string que representa a unidade de medida dos valores fornecidos.
-      Essa unidade será exibida na anotação da linha horizontal. O padrão é uma string vazia.
+    :param fig: A figura Plotly Express onde a linha horizontal será adicionada.
+    :param values: Uma lista ou array-like contendo os valores para os quais deseja-se calcular a média.
+    :param horizontal_line_annotation: Uma string que será adicionada como anotação à linha horizontal,
+    geralmente para fornecer contexto sobre o que a linha representa (por exemplo, 'Média', 'Limite', etc.).
+    O padrão é uma string vazia.
+    :param unit_of_measurement: Uma string que representa a unidade de medida dos valores fornecidos.
+    Essa unidade será exibida na anotação da linha horizontal. O padrão é uma string vazia.
 
     """
 
@@ -37,17 +37,17 @@ def bar_plot(data,
              mean_annotation: bool = True,
              unit_of_measurement: str = '')->Figure:
     """
-     Gera um gráfico de barras, e informa em uma linha tracejada a média da série fornecida.
+    Gera um gráfico de barras, e informa em uma linha tracejada a média da série fornecida.
 
-     @param data: O conjunto de dados a ser utilizado para gerar o gráfico.
-     @param x: O nome da coluna que contém os valores do eixo x.
-     @param y: O nome da coluna que contém os valores do eixo y.
-     @param title: O título do gráfico.
-     @param horizontal_line_annotation: Uma string opcional a ser adicionada à anotação da linha horizontal.
-     @param mean_annotation: Indica se uma linha horizontal representando a média de y deve ser adicionada ao gráfico.
-     @param unit_of_measurement: A unidade de medida para ser exibida nas anotações.
+    :param data: O conjunto de dados a ser utilizado para gerar o gráfico.
+    :param x: O nome da coluna que contém os valores do eixo x.
+    :param y: O nome da coluna que contém os valores do eixo y.
+    :param title: O título do gráfico.
+    :param horizontal_line_annotation: Uma string opcional a ser adicionada à anotação da linha horizontal.
+    :param mean_annotation: Indica se uma linha horizontal representando a média de y deve ser adicionada ao gráfico.
+    :param unit_of_measurement: A unidade de medida para ser exibida nas anotações.
 
-    @return: Um objeto Figure contendo o gráfico de barras gerado.
+    :return: Um objeto Figure contendo o gráfico de barras gerado.
      """
 
 
@@ -72,18 +72,18 @@ def line_plot(data,
     """
     Gera um gráfico de linha, e informa  a média da série fornecida.
 
-    @param data: O conjunto de dados a ser utilizado para gerar o gráfico.
-    @param x: O nome da coluna que contém os valores do eixo x.
-    @param y1: O nome da coluna que contém os valores do primeiro eixo y.
-    @param y2: O nome da coluna que contém os valores do segundo eixo y.
-    @param title: O título do gráfico.
-    @param y1_mean_annotation: Uma string opcional a ser adicionada à anotação da linha horizontal de y1.
-    @param y2_mean_annotation: Uma string opcional a ser adicionada à anotação da linha horizontal de y2.
-    @param mean_annotation: Indica se uma linha horizontal representando a média de y deve ser adicionada ao gráfico.
-    @param unit_of_measurement_y1: A unidade de medida para ser exibida nas anotações de y1.
-    @param unit_of_measurement_y2: A unidade de medida para ser exibida nas anotações de y2.
+    :param data: O conjunto de dados a ser utilizado para gerar o gráfico.
+    :param x: O nome da coluna que contém os valores do eixo x.
+    :param y1: O nome da coluna que contém os valores do primeiro eixo y.
+    :param y2: O nome da coluna que contém os valores do segundo eixo y.
+    :param title: O título do gráfico.
+    :param y1_mean_annotation: Uma string opcional a ser adicionada à anotação da linha horizontal de y1.
+    :param y2_mean_annotation: Uma string opcional a ser adicionada à anotação da linha horizontal de y2.
+    :param mean_annotation: Indica se uma linha horizontal representando a média de y deve ser adicionada ao gráfico.
+    :param unit_of_measurement_y1: A unidade de medida para ser exibida nas anotações de y1.
+    :param unit_of_measurement_y2: A unidade de medida para ser exibida nas anotações de y2.
 
-    @return: Um objeto Figure contendo o gráfico de barras gerado.
+    :return: Um objeto Figure contendo o gráfico de barras gerado.
     """
     
     if y2:

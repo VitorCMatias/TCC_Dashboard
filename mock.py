@@ -11,6 +11,7 @@ class Mock:
         self.db_connection = st.connection('mock_data', type='sql',ttl=10)
 
     def __mocked_data(self, index: int):
+
         return self.df.iloc[index]
 
 
