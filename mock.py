@@ -2,13 +2,30 @@ import pandas as pd
 import streamlit as st
 from DB import mock_table
 import numpy as np
+from datetime import datetime
+
+from Serial import SerialReceiver
 
 class Mock:
-    db_connection = None
-    df = pd.read_csv('GPS_info.csv')
+
 
     def __init__(self):
         self.db_connection = st.connection('mock_data', type='sql',ttl=10)
+        # self.df = pd.read_csv('GPS_info.csv')
+        self.serial = SerialReceiver()
+        self.serial.connect()
+
+    def aux(self):
+        while True:
+            car_measurements = self.serial.get_data()
+            print(car_measurements)
+            
+            gps_datetime = datetime.strptime(car_measurements[0],'%Y-%m-%d %H:%M:%S')
+            longitude = float(car_measurements[1])
+            latitude = float(car_measurements[2])
+            speed = float(car_measurements[3])
+
+
 
     def __mocked_data(self, index: int):
 
@@ -31,15 +48,22 @@ class Mock:
             st.session_state['GPS_index'] = 0
 
     def add(self):
-        self.__mock_gps_session_state()
-        data = self.__mocked_data(self.__get_mock_gps_session_state())
+        # self.__mock_gps_session_state()
+        # data = self.__mocked_data(self.__get_mock_gps_session_state())
+
+        car_measurements = self.serial.get_data()
+        
+        gps_datetime = datetime.strptime(car_measurements[0],'%Y-%m-%d %H:%M:%S')
+        longitude = float(car_measurements[1])
+        latitude = float(car_measurements[2])
+        speed = float(car_measurements[3])
 
         with self.db_connection.session as db_session:
-            new_data = mock_table(timestamp=data.gps_datetime, latitude=data.latitude, longitude=data.longitude, speed=data.speed)
+            new_data = mock_table(timestamp=gps_datetime, latitude=latitude, longitude=longitude, speed=speed)
             db_session.add(new_data)
             db_session.commit()
-    
-        self.__mock_gps_session_state_update()
+
+        # self.__mock_gps_session_state_update()
 
     def get_previous_positions(self):
         return self.db_connection.query('SELECT latitude, longitude, speed FROM mock_table')
@@ -69,3 +93,9 @@ class Mock:
 
         # Exibindo o DataFrame
         return df
+    
+
+if __name__ == "__main__":
+    mock = Mock()
+    mock.aux()
+    ...

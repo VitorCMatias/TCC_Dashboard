@@ -25,7 +25,7 @@ class SerialReceiver:
         """
 
         waiting_connection = True
-        while (waiting_connection):
+        while waiting_connection:
             ports = list(serial.tools.list_ports.comports())
             found_port = next((port.device for port in ports if device_name in port.description), None)
 
@@ -97,7 +97,7 @@ class SerialReceiver:
             r"entry 0x[0-9a-fA-F]+"
         ]
 
-        data = serial_receiver.__get_device_data()
+        data = self.__get_device_data()
         data_str = ' '.join(data)
         if not any(re.match(pattern, data_str) for pattern in ignore_patterns):
             return data
