@@ -1,3 +1,7 @@
+import asyncio
+
+
+
 import re
 import serial
 import serial.tools.list_ports
@@ -5,7 +9,7 @@ from typing import Optional, List
 import time
 
 
-class SerialReceiver:
+class SerialReceiver(asyncio.Protocol):
     """ A class to handle serial communication with an ESP32 device
 
     :param port: The serial port to connect to. If None, the port will be detected automatically.

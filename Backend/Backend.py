@@ -1,5 +1,5 @@
 import asyncio
-from Serial_module.Serial_reader import start_serial_reader
+from Serial_module import start_serial_reader
 
 async def main():
     transport, _ = await start_serial_reader()

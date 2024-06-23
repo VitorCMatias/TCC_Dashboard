@@ -1,6 +1,6 @@
 import pandas as pd
 import streamlit as st
-from DB import mock_table
+from Backend.DB import mock_table
 import numpy as np
 from datetime import datetime
 

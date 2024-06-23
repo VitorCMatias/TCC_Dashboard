@@ -3,8 +3,9 @@ from streamlit_folium import st_folium
 import time
 from Map import GPS
 from utils import calculate_acceleration,get_position
-from Mock import Mock
+
 from Plot import bar_plot, line_plot
+from Backend import APIs
 
 
 # TODO
@@ -30,12 +31,13 @@ st.title('CAN-Monitor Dashboard')
 st.write('---')
 
 
-mock = Mock()
-mock.add()
 
-positions = mock.get_previous_positions()
-query_car_current_position = mock.get_current_position()
-speed_sample = mock.get_sample_speed()
+db_data = APIs()
+
+
+positions = db_data.get_previous_positions()
+query_car_current_position = db_data.get_current_position()
+speed_sample = db_data.get_sample_speed()
 car_current_position = get_position(query_car_current_position)
 
 df_acelletation = calculate_acceleration(speed_sample)
@@ -67,9 +69,9 @@ with plot2:
     use_container_width=True)
 
 
-st.dataframe(mock.car_flags().head(1), use_container_width=True,hide_index=True)
+st.dataframe(db_data.car_flags().head(1), use_container_width=True,hide_index=True)
 
-all_data = mock.get_all()
+all_data = db_data.get_all()
 all_data = calculate_acceleration(all_data)
 
 

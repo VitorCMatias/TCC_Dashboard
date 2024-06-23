@@ -1,6 +1,5 @@
-
 from datetime import datetime
-from DB import save_to_db
+import DB
 
 
 
@@ -14,7 +13,7 @@ async def handle_data(data):
         latitude = float(latitude)
         speed = float(speed)
 
-        save_to_db(gps_datetime, longitude, latitude, speed)
+        DB.save(gps_datetime, longitude, latitude, speed)
     except ValueError as e:
         print(f"Error processing data: {e}")
 

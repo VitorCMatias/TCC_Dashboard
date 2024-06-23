@@ -1,5 +1,2 @@
-from .Serial import SerialReceiver
+from .Serial_reader import 
 
-connect = SerialReceiver.connect
-get_data = SerialReceiver.connect
-close = SerialReceiver.close_connection
