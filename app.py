@@ -3,12 +3,9 @@ from streamlit_folium import st_folium
 import time
 from Backend import APIs
 
+from Frontend import GPS, bar_plot,line_plot,Sidebar
 
-from Frontend import GPS, bar_plot,line_plot
 
-# from Map import GPS
-# from utils import calculate_acceleration,get_position
-# from Plot import bar_plot, line_plot
 
 
 
@@ -35,9 +32,14 @@ st.title('CAN-Monitor Dashboard')
 st.write('---')
 
 
+refresh_frequency = 2
+auto_refresh = True
 
 db_data = APIs()
+car_map = GPS((-6.22444, 106.867111),zoom=10)
 
+Sidebar.show(auto_refresh,refresh_frequency)
+    
 
 positions = db_data.get_previous_positions()
 query_car_current_position = db_data.get_current_position()
@@ -46,7 +48,6 @@ car_current_position = db_data.get_position(query_car_current_position)
 
 df_acelletation = db_data.calculate_acceleration(speed_sample)
 
-car_map = GPS((-6.22444, 106.867111),zoom=10)
 
 st_data = st_folium(
     car_map.get_map(),
@@ -81,8 +82,7 @@ all_data = db_data.calculate_acceleration(all_data)
 
 st.dataframe(all_data,use_container_width=True,hide_index=True)
 
-auto_refresh = True
-refresh_frequency = 2
+
 if auto_refresh:
     time.sleep(refresh_frequency)
     st.rerun()
