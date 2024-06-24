@@ -1,13 +1,13 @@
 from sqlalchemy import create_engine, Column, Integer, String, Float
-from sqlalchemy.orm import DeclarativeBase, Session, sessionmaker
+from sqlalchemy.orm import Session, sessionmaker
+from sqlalchemy.ext.declarative import declarative_base
 
 
 
 engine = create_engine('sqlite:///./mock_data.db')
 SessionLocal = sessionmaker(bind=engine)
 
-class Base(DeclarativeBase):
-    pass
+Base = declarative_base()
 
 class mock_table(Base):
     __tablename__ = 'mock_table'
