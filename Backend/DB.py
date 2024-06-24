@@ -3,7 +3,7 @@ from sqlalchemy.orm import DeclarativeBase, Session, sessionmaker
 
 
 
-engine = create_engine('sqlite:///../mock_data.db')
+engine = create_engine('sqlite:///./mock_data.db')
 SessionLocal = sessionmaker(bind=engine)
 
 class Base(DeclarativeBase):
