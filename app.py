@@ -1,11 +1,15 @@
 import streamlit as st
 from streamlit_folium import st_folium
 import time
-from Map import GPS
-from utils import calculate_acceleration,get_position
-
-from Plot import bar_plot, line_plot
 from Backend import APIs
+
+
+from Frontend import GPS, bar_plot,line_plot
+
+# from Map import GPS
+# from utils import calculate_acceleration,get_position
+# from Plot import bar_plot, line_plot
+
 
 
 # TODO
@@ -38,9 +42,9 @@ db_data = APIs()
 positions = db_data.get_previous_positions()
 query_car_current_position = db_data.get_current_position()
 speed_sample = db_data.get_sample_speed()
-car_current_position = get_position(query_car_current_position)
+car_current_position = db_data.get_position(query_car_current_position)
 
-df_acelletation = calculate_acceleration(speed_sample)
+df_acelletation = db_data.calculate_acceleration(speed_sample)
 
 car_map = GPS((-6.22444, 106.867111),zoom=10)
 
@@ -72,7 +76,7 @@ with plot2:
 st.dataframe(db_data.car_flags().head(1), use_container_width=True,hide_index=True)
 
 all_data = db_data.get_all()
-all_data = calculate_acceleration(all_data)
+all_data = db_data.calculate_acceleration(all_data)
 
 
 st.dataframe(all_data,use_container_width=True,hide_index=True)
