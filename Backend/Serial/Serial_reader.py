@@ -1,9 +1,10 @@
 import asyncio
-import serial_asyncio
-import serial.tools.list_ports
-from Data_handler import handle_data
 import re
-from typing import Optional, List
+from typing import List, Optional
+
+import serial.tools.list_ports
+import serial_asyncio
+from Data_handler import handle_data
 
 BAUD_RATE = 115200
 
@@ -38,7 +39,7 @@ class SerialReader(asyncio.Protocol):
         asyncio.get_event_loop().stop()
 
 
-async def detect_port(device_name: str = "Silicon Labs CP210x USB to UART Bridge (COM4)"):
+async def detect_port(device_name: str = "Silicon Labs CP210x USB to UART Bridge"):
     """ Detecta a porta serial onde o ESP32 está conectado.
 
     :raises Exception: Se nenhuma porta serial for encontrada.
