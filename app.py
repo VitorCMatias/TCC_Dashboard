@@ -1,13 +1,10 @@
+import time
+
 import streamlit as st
 from streamlit_folium import st_folium
-import time
+
 from Backend import APIs
-
-from Frontend import GPS, bar_plot,line_plot,Sidebar
-
-
-
-
+from Frontend import GPS, Sidebar, bar_plot, line_plot
 
 # TODO
 # - Criar o painel lateral de configuração

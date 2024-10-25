@@ -1,16 +1,13 @@
-import streamlit as st
-
 import os
 import subprocess
 
-
-
+import streamlit as st
 
 
 def __get_venv_python():
-    if os.name == 'nt':  # Windows
+    if os.name == 'nt': 
         return os.path.join('.venv', 'Scripts', 'python.exe')
-    else:  # Unix ou MacOS
+    else: 
         return os.path.join('.venv', 'bin', 'python')
 
 # Função para iniciar o subprocesso
