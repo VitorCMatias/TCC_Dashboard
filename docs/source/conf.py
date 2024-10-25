@@ -9,7 +9,7 @@
 project = 'CAN Monitor Dashboard'
 copyright = '2024, Vitor Matias'
 author = 'Vitor Matias'
-release = 'a1.0'
+release = '1.0'
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
@@ -29,7 +29,7 @@ extensions = ['myst_parser',
 templates_path = ['_templates']
 exclude_patterns = []
 
-autoapi_dirs = ['../../Map','../../Plot']
+autoapi_dirs = ['../Backend','../Frontend']
 
 autodoc_typehints = 'both'
 
