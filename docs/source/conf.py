@@ -29,7 +29,7 @@ extensions = ['myst_parser',
 templates_path = ['_templates']
 exclude_patterns = []
 
-autoapi_dirs = ['../Backend','../Frontend']
+autoapi_dirs = ['../../Backend','../../Frontend']
 
 autodoc_typehints = 'both'
 
