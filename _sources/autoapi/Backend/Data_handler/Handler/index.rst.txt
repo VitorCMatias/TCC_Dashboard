@@ -1,0 +1,21 @@
+Backend.Data_handler.Handler
+============================
+
+.. py:module:: Backend.Data_handler.Handler
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   Backend.Data_handler.Handler.handle_data
+
+
+Module Contents
+---------------
+
+.. py:function:: handle_data(data)
+   :async:
+
+

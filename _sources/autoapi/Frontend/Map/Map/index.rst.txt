@@ -1,0 +1,84 @@
+Frontend.Map.Map
+================
+
+.. py:module:: Frontend.Map.Map
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   Frontend.Map.Map.GPS
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   Frontend.Map.Map.velocity_to_color
+
+
+Module Contents
+---------------
+
+.. py:class:: GPS(initial_position: tuple, zoom: int = 15)
+
+   Módulo responsável por construir os objetos de Mapa na dashboard principal, e gerenciar os dados presentes nele.
+
+   :param initial_position: Tupla com as coordenadas iniciais do mapa.
+   :param zoom: Zoom do mapa.
+
+
+   .. py:attribute:: position
+
+
+   .. py:attribute:: map
+
+
+   .. py:attribute:: figure
+
+
+   .. py:method:: get_map() -> folium.Map
+
+      Retorna o mapa de coordenadas de um objeto de Mapa.
+
+      :return: Objeto de Mapa
+
+
+
+   .. py:method:: position_update(coordinate: tuple) -> folium.map.FeatureGroup
+
+      Função para atualizar a posição do mapa
+
+      :param coordinate: Tupla com os valores das coordenadas do carro.
+      :return: Canva com a posição do carro.
+
+
+
+   .. py:method:: get_position() -> tuple
+
+
+   .. py:method:: heat_map(car_data: pandas.DataFrame, latitude: str = 'latitude', longitude: str = 'longitude', speed: str = 'speed') -> folium.map.FeatureGroup
+
+      Cria um mapa de calor utilizando as posições do veículo.
+
+      :param car_data: Dataframe com as posições antigas do carro e o parametro para mapa de calor.
+      :param latitude: Nome da coluna com as latitudes do carro no dataframe.
+      :param longitude: Nome da coluna com as longitudes do carro no dataframe.
+      :param speed: Nome da coluna com as velocidades do carro no dataframe.
+      :return: canva com as posições antigas do carro, pintadas de acordo com a velocidade, quanto mais quente a cor
+       mais rápido o carro estava.
+
+
+
+.. py:function:: velocity_to_color(value: float, upper_bound: float = 51.0) -> str
+
+   Mapeia um valor informado em uma escala de cor hexadecimal
+
+   :param value: O valor que será mapeado em código de cor.
+   :param upper_bound: O valor máximo do intervalo que será normalizado para uma escala de 255.
+   :return: Retorna o código de cores do valor inserido no parâmetro.
+
+
