@@ -1,5 +1,7 @@
 import asyncio
+
 from Serial import start_serial_reader
+
 
 async def main():
     transport, _ = await start_serial_reader()
@@ -10,8 +12,3 @@ async def main():
 
 if __name__ == '__main__':
     asyncio.run(main())
-
-
-
-    
-

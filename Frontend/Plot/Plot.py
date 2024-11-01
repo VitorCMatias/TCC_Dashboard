@@ -1,9 +1,11 @@
+from typing import Optional
+
 import numpy as np
 from plotly import express as px
 from plotly.graph_objects import Figure
-from typing import Optional
 
-def __add_mean_horizontal_line(fig: Figure, values:list, horizontal_line_annotation:str='', unit_of_measurement:str=''):
+
+def __add_mean_horizontal_line(fig: Figure, values: list, horizontal_line_annotation: str='', unit_of_measurement: str=''):
     """
     Adiciona uma linha horizontal ao gráfico Plotly Express representando a média dos valores fornecidos.
 

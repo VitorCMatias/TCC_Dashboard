@@ -10,19 +10,24 @@ def __get_venv_python():
     else: 
         return os.path.join('.venv', 'bin', 'python')
 
-# Função para iniciar o subprocesso
 def __start_backend():
+    """
+    Essa função inicializa o backend do programa por meio de subprocessos. Por meio dela é possivél iniciar a recepção de dados. Ela foi desenvolvida para simplificar a excução, por meio dela é possivel executar o programa apenas via streamlit.
+    """
     if st.session_state.process is None:
         venv_python = __get_venv_python()
         st.session_state.process = subprocess.Popen([venv_python, 'Backend/Backend.py'])
 
-# Função para parar o subprocesso
 def __stop_backend():
+    """
+    Essa função finaliza o backend do programa por meio de subprocessos. Por meio dela é possivél finalizar a recepção de dados. Ela foi desenvolvida para simplificar a excução, por meio dela é possivel executar o programa apenas via streamlit.
+    """
     if st.session_state.process is not None:
         st.session_state.process.terminate()
         st.session_state.process = None
 
 def show(auto_refresh, refresh_frequency):
+
     # Inicialize a variável de subprocesso
     if 'process' not in st.session_state:
         st.session_state.process = None
