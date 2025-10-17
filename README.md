@@ -1,8 +1,19 @@
-# Ferramenta de Monitoramento de Barramento CAN para o Protótipo Automobilístico da EESC-USP Tupã
+# CAN Bus Monitoring Tool for the EESC-USP Tupã Automotive Prototype
 
-O processo de aquisição de dados desempenha um papel crucial na engenharia, permitindo a detecção precoce de falhas de projeto e a análise do comportamento dos sistemas sob condições adversas. No setor automobilístico, essa prática é indispensável tanto na validação de conceitos quanto na identificação de falhas antes de incidentes. Este trabalho tem como objetivo desenvolver um equipamento de registro de dados de baixo custo, independente da arquitetura do projeto, destinado à validação do protótipo da equipe EESC-USP Tupã. A necessidade deste dispositivo surgiu devido às mudanças anuais nos projetos, que frequentemente comprometem a telemetria. Para resolver esse problema, foi desenvolvido um sistema que monitora o barramento CAN do protótipo e transmite os dados via protocolo LoRa para um receptor, que os processa e exibe em um computador de forma clara e intuitiva. O projeto visa garantir que a leitura dos dados atenda aos requisitos da equipe, como alcance das antenas superior à extensão da pista e exibição clara dos parâmetros, sem interferir na arquitetura ou comunicação dos componentes. Este estudo tem potencial para otimizar a manufatura e a validação de futuros projetos da equipe, refinando os testes e a análise de desempenho.
+Data acquisition plays a vital role in engineering, enabling early detection of design flaws and providing insights into system behavior under challenging conditions. In the automotive sector, this process is essential — not only for validating concepts but also for identifying failures before they lead to incidents.
+This project focuses on developing a low-cost, architecture-independent data logging device designed to support the validation of the EESC-USP Tupã team’s prototype. The need for such a tool arose from the team's yearly design updates, which often disrupt telemetry systems.
+To address this challenge, we built a system that monitors the prototype’s CAN bus and transmits data via the LoRa protocol to a receiver. The receiver then processes and displays the information on a computer in a clear and intuitive format. The solution was designed to meet key team requirements, such as antenna range exceeding the track length and seamless visualization of parameters—without interfering with the prototype’s architecture or internal communications.
+This tool has the potential to streamline manufacturing and validation processes for future projects, enhancing both testing efficiency and performance analysis
 
-## Objetivos
-O projeto tem como objetivo desenvolver um equipamento de registro de dados de baixo custo, que seja independente da arquitetura do projeto, para a validação do protótipo da equipe EESC-USP Tupã. A necessidade de tal equipamento foi observada pois há alterações anuais nos projetos da equipe, e a telemetria muitas vezes é prejudicada. Notou-se que alguns times nacionais e outros internacionais fazem o uso de equipamentos de registro em seu projeto, no entanto, esse tipo de equipamento apresenta alto custo.
+## Objectives
+The goal of this project is to develop a low-cost data logging device that operates independently of the vehicle’s architecture, aimed at validating the EESC-USP Tupã team’s automotive prototype. The need for such a device became evident due to the team's yearly design changes, which often compromise telemetry systems. While some national and international teams already use data logging tools, these solutions tend to be expensive.
 
-A principal responsabilidade do dispositivo em questão consiste em fazer o registro dos dados transmitidos na rede CAN do veículo e fazer um carimbo temporal, __timestamp__, dessas informações. Os dados então serão enviados para um banco de dados para futuras análises. Em conjunto com o dispositivo de leitura também será desenvolvido uma __dashboard__ para exibição das informações obtidas.
+The main responsibility of the proposed device is to record data transmitted over the vehicle’s CAN network and apply a __timestamp__ to each entry. This data will then be sent to a database for future analysis. Alongside the logging device, a __dashboard__ will also be developed to display the collected information in a clear and accessible format.
+
+---
+
+# Example Execution Using a Jakarta Bus Database
+To demonstrate the system in action, I used a public transportation dataset from Jakarta, focusing specifically on bus routes and schedules. 
+
+<img width="961" height="942" alt="dashboard_2" src="https://github.com/user-attachments/assets/1c38b56e-a838-42be-b57e-6a5314c15b97" />
+
