@@ -1,0 +1,52 @@
+Backend.APIs
+============
+
+.. py:module:: Backend.APIs
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   Backend.APIs.APIs
+
+
+Module Contents
+---------------
+
+.. py:class:: APIs(db_name: str = 'mock_data')
+
+   .. py:attribute:: db_connection
+
+
+   .. py:method:: get_previous_positions()
+
+
+   .. py:method:: get_current_position()
+
+
+   .. py:method:: get_sample_speed()
+
+
+   .. py:method:: get_all()
+
+
+   .. py:method:: car_flags()
+
+
+   .. py:method:: calculate_acceleration(df: pandas.DataFrame, time_colum: str = 'timestamp', speed_solum: str = 'speed') -> pandas.DataFrame
+
+      Calcula a aceleração a partir de um DataFrame contendo valores de velocidade.
+
+      :param df: Um DataFrame com as colunas 'timestamp', 'speed'.
+      :param time_colum:  Coluna do dataframe contendo os valores de tempo.
+      :param speed_solum: Coluna do dataframe contendo os valores de velocidade.
+
+      :return: O dataframe original contendo as colunas de aceleração adicionadas a ele.
+
+
+
+   .. py:method:: get_position(df)
+
+

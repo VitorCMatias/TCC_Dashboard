@@ -1,0 +1,68 @@
+Backend.DB
+==========
+
+.. py:module:: Backend.DB
+
+
+Attributes
+----------
+
+.. autoapisummary::
+
+   Backend.DB.engine
+   Backend.DB.SessionLocal
+   Backend.DB.Base
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   Backend.DB.mock_table
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   Backend.DB.save
+
+
+Module Contents
+---------------
+
+.. py:data:: engine
+
+.. py:data:: SessionLocal
+
+.. py:data:: Base
+
+.. py:class:: mock_table
+
+   Bases: :py:obj:`Base`
+
+
+   .. py:attribute:: __tablename__
+      :value: 'mock_table'
+
+
+
+   .. py:attribute:: id
+
+
+   .. py:attribute:: timestamp
+
+
+   .. py:attribute:: latitude
+
+
+   .. py:attribute:: longitude
+
+
+   .. py:attribute:: speed
+
+
+.. py:function:: save(gps_datetime, longitude, latitude, speed)
+

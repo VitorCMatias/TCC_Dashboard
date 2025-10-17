@@ -1,0 +1,30 @@
+Backend.Data_handler
+====================
+
+.. py:module:: Backend.Data_handler
+
+
+Submodules
+----------
+
+.. toctree::
+   :maxdepth: 1
+
+   /autoapi/Backend/Data_handler/Handler/index
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   Backend.Data_handler.handle_data
+
+
+Package Contents
+----------------
+
+.. py:function:: handle_data(data)
+   :async:
+
+

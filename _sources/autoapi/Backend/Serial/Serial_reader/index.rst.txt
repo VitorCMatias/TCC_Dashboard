@@ -1,0 +1,91 @@
+Backend.Serial.Serial_reader
+============================
+
+.. py:module:: Backend.Serial.Serial_reader
+
+
+Attributes
+----------
+
+.. autoapisummary::
+
+   Backend.Serial.Serial_reader.BAUD_RATE
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   Backend.Serial.Serial_reader.SerialReader
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   Backend.Serial.Serial_reader.detect_port
+   Backend.Serial.Serial_reader.start_serial_reader
+
+
+Module Contents
+---------------
+
+.. py:data:: BAUD_RATE
+   :value: 115200
+
+
+.. py:class:: SerialReader
+
+   Bases: :py:obj:`asyncio.Protocol`
+
+
+   A class to handle async serial communication with an ESP32 device.
+
+   :param port: The serial port to connect to. If None, the port will be detected automatically.
+   :param baudrate: The baud rate for the serial communication.
+
+
+
+   .. py:method:: connection_made(transport)
+
+      Called when a connection is made.
+
+      The argument is the transport representing the pipe connection.
+      To receive data, wait for data_received() calls.
+      When the connection is closed, connection_lost() is called.
+
+
+
+   .. py:method:: data_received(data)
+
+      Called when some data is received.
+
+      The argument is a bytes object.
+
+
+
+   .. py:method:: connection_lost(exc)
+
+      Called when the connection is lost or closed.
+
+      The argument is an exception object or None (the latter
+      meaning a regular EOF is received or the connection was
+      aborted or closed).
+
+
+
+.. py:function:: detect_port(device_name: str = 'Silicon Labs CP210x USB to UART Bridge')
+   :async:
+
+
+   Detecta a porta serial onde o ESP32 está conectado.
+
+   :raises Exception: Se nenhuma porta serial for encontrada.
+
+
+.. py:function:: start_serial_reader()
+   :async:
+
+

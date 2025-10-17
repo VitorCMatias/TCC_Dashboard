@@ -1,0 +1,28 @@
+Frontend.Sidebar
+================
+
+.. py:module:: Frontend.Sidebar
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   Frontend.Sidebar.__get_venv_python
+   Frontend.Sidebar.__start_backend
+   Frontend.Sidebar.__stop_backend
+   Frontend.Sidebar.show
+
+
+Module Contents
+---------------
+
+.. py:function:: __get_venv_python()
+
+.. py:function:: __start_backend()
+
+.. py:function:: __stop_backend()
+
+.. py:function:: show(auto_refresh, refresh_frequency)
+

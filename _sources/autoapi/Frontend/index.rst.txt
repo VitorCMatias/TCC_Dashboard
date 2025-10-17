@@ -1,0 +1,124 @@
+Frontend
+========
+
+.. py:module:: Frontend
+
+
+Submodules
+----------
+
+.. toctree::
+   :maxdepth: 1
+
+   /autoapi/Frontend/Map/index
+   /autoapi/Frontend/Plot/index
+   /autoapi/Frontend/Sidebar/index
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   Frontend.GPS
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   Frontend.bar_plot
+   Frontend.line_plot
+   Frontend.show
+
+
+Package Contents
+----------------
+
+.. py:class:: GPS(initial_position: tuple, zoom: int = 15)
+
+   Módulo responsável por construir os objetos de Mapa na dashboard principal, e gerenciar os dados presentes nele.
+
+   :param initial_position: Tupla com as coordenadas iniciais do mapa.
+   :param zoom: Zoom do mapa.
+
+
+   .. py:attribute:: position
+
+
+   .. py:attribute:: map
+
+
+   .. py:attribute:: figure
+
+
+   .. py:method:: get_map() -> folium.Map
+
+      Retorna o mapa de coordenadas de um objeto de Mapa.
+
+      :return: Objeto de Mapa
+
+
+
+   .. py:method:: position_update(coordinate: tuple) -> folium.map.FeatureGroup
+
+      Função para atualizar a posição do mapa
+
+      :param coordinate: Tupla com os valores das coordenadas do carro.
+      :return: Canva com a posição do carro.
+
+
+
+   .. py:method:: get_position() -> tuple
+
+
+   .. py:method:: heat_map(car_data: pandas.DataFrame, latitude: str = 'latitude', longitude: str = 'longitude', speed: str = 'speed') -> folium.map.FeatureGroup
+
+      Cria um mapa de calor utilizando as posições do veículo.
+
+      :param car_data: Dataframe com as posições antigas do carro e o parametro para mapa de calor.
+      :param latitude: Nome da coluna com as latitudes do carro no dataframe.
+      :param longitude: Nome da coluna com as longitudes do carro no dataframe.
+      :param speed: Nome da coluna com as velocidades do carro no dataframe.
+      :return: canva com as posições antigas do carro, pintadas de acordo com a velocidade, quanto mais quente a cor
+       mais rápido o carro estava.
+
+
+
+.. py:function:: bar_plot(data, x: str, y: str, title: str, horizontal_line_annotation: str = '', mean_annotation: bool = True, unit_of_measurement: str = '') -> plotly.graph_objects.Figure
+
+   Gera um gráfico de barras, e informa em uma linha tracejada a média da série fornecida.
+
+   :param data: O conjunto de dados a ser utilizado para gerar o gráfico.
+   :param x: O nome da coluna que contém os valores do eixo x.
+   :param y: O nome da coluna que contém os valores do eixo y.
+   :param title: O título do gráfico.
+   :param horizontal_line_annotation: Uma string opcional a ser adicionada à anotação da linha horizontal.
+   :param mean_annotation: Indica se uma linha horizontal representando a média de y deve ser adicionada ao gráfico.
+   :param unit_of_measurement: A unidade de medida para ser exibida nas anotações.
+
+   :return: Um objeto Figure contendo o gráfico de barras gerado.
+
+
+
+.. py:function:: line_plot(data, x: str, y1: str, y2: Optional[str], title: str = '', y1_mean_annotation: bool = True, y2_mean_annotation: bool = True, unit_of_measurement_y1: str = '', unit_of_measurement_y2: str = '') -> plotly.graph_objects.Figure
+
+   Gera um gráfico de linha, e informa  a média da série fornecida.
+
+   :param data: O conjunto de dados a ser utilizado para gerar o gráfico.
+   :param x: O nome da coluna que contém os valores do eixo x.
+   :param y1: O nome da coluna que contém os valores do primeiro eixo y.
+   :param y2: O nome da coluna que contém os valores do segundo eixo y.
+   :param title: O título do gráfico.
+   :param y1_mean_annotation: Uma string opcional a ser adicionada à anotação da linha horizontal de y1.
+   :param y2_mean_annotation: Uma string opcional a ser adicionada à anotação da linha horizontal de y2.
+   :param mean_annotation: Indica se uma linha horizontal representando a média de y deve ser adicionada ao gráfico.
+   :param unit_of_measurement_y1: A unidade de medida para ser exibida nas anotações de y1.
+   :param unit_of_measurement_y2: A unidade de medida para ser exibida nas anotações de y2.
+
+   :return: Um objeto Figure contendo o gráfico de barras gerado.
+
+
+.. py:function:: show(auto_refresh, refresh_frequency)
+

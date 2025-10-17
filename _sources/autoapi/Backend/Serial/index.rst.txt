@@ -1,0 +1,30 @@
+Backend.Serial
+==============
+
+.. py:module:: Backend.Serial
+
+
+Submodules
+----------
+
+.. toctree::
+   :maxdepth: 1
+
+   /autoapi/Backend/Serial/Serial_reader/index
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   Backend.Serial.start_serial_reader
+
+
+Package Contents
+----------------
+
+.. py:function:: start_serial_reader()
+   :async:
+
+
