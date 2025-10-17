@@ -40,10 +40,11 @@ class APIs():
         """
         Calcula a aceleração a partir de um DataFrame contendo valores de velocidade.
 
-        @param df: Um DataFrame com as colunas 'timestamp', 'speed'.
-        @param time_colum:  Coluna do dataframe contendo os valores de tempo.
-        @param speed_solum: Coluna do dataframe contendo os valores de velocidade.
-        @return: O dataframe original contendo as colunas de aceleração adicionadas a ele.
+        :param df: Um DataFrame com as colunas 'timestamp', 'speed'.
+        :param time_colum:  Coluna do dataframe contendo os valores de tempo.
+        :param speed_solum: Coluna do dataframe contendo os valores de velocidade.
+        
+        :return: O dataframe original contendo as colunas de aceleração adicionadas a ele.
         """
 
         df[time_colum] = pd.to_datetime(df[time_colum])
